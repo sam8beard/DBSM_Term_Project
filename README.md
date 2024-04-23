@@ -1,5 +1,5 @@
 # DBSM Term Project 
-** Hi! ** 
+**Hi!** 
 
 This is our final project for our database management course. 
 
