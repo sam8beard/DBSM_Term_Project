@@ -9,16 +9,20 @@ events.
 Commands to run: 
 
 ``` python -m venv venv  ``` 
+
 ``` pip install flask ```
 
 ## To activate virtual environment 
 ``` source ./venv/Scripts/activate ```
 ## To deactivate virtual environment 
-``` deactivate ``` 
+``` deactivate ```  
+
 **Activate dev env**, then...
+
 ``` python -m pip install --upgrade pip ```
 
 ## To run while in dev env
-``` python -m flask run ```
+``` python -m flask run ``` 
+
 **TO BE CONTINUED** 
 
