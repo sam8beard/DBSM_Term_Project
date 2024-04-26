@@ -2,6 +2,7 @@ from flask import Flask
 import pandas as pd
 import sqlite3
 from database import get_db
+from flask import render_template
 app = Flask(__name__)
 
 @app.route("/")
@@ -18,5 +19,7 @@ def home():
     for i in range(0, 5):
         print(rows[i])
 
+    data = rows[3]
+        
+    return render_template('index.html', dataToRender=data) 
 
-    return "<h1> {{rows}} </h1>"
