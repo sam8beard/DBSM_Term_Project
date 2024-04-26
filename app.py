@@ -20,6 +20,7 @@ def home():
         print(rows[i])
 
     data = rows[3]
-        
-    return render_template('index.html', dataToRender=data) 
+    data2 = rows[4]
+    
+    return render_template('index.html', dataToRender=data, dataToRender2=1) 
 
