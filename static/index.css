@@ -5,8 +5,26 @@
     color: blue; 
     
 }
+body { 
+    background-color: #1F2937;
+}
 
+.my-header { 
+    color: white;
+
+}
+/* .my-header { 
+    color: white;
+    background-color: #1F2937;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
+} */
 .parent-container { 
+    color: white;
+    background-color: #1F2937;
     border: 5px solid black;
     display: flex; 
     /* flex-direction: column; */
@@ -17,6 +35,8 @@
 
 .parent-container div { 
     flex: 1 1 auto;  
+    /* The border color is for testing reasons;
+        REMOVE WHEN DONE  */
     border: 2px solid red; 
     height: auto;
     width: auto;
