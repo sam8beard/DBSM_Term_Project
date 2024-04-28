@@ -33,6 +33,10 @@ body {
     justify-content: center;
 }
 
+.olympics-logo { 
+    /* mix-blend-mode: multiply; */
+}
+
 .parent-container div { 
     flex: 1 1 auto;  
     /* The border color is for testing reasons;
@@ -40,6 +44,7 @@ body {
     border: 2px solid red; 
     height: auto;
     width: auto;
+
 }
 
 .child-one { 
