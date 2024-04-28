@@ -12,15 +12,20 @@ def home():
     cursor.execute("SELECT * FROM table_name")
     rows = cursor.fetchall()
     counter = 0
-    print(type(rows))
-    # for row in rows:
-    #     print(row)
-    print(rows[1])
-    for i in range(0, 5):
-        print(rows[i])
+    # print(type(rows))
+    # # for row in rows:
+    # #     print(row)
+    # print(rows[1])
+    # for i in range(0, 5):
+    #     print(rows[i])
 
     data = rows[3]
     data2 = rows[4]
     
     return render_template('index.html', dataToRender=data, dataToRender2=1) 
+
+@app.route("/query1") 
+def query1(): 
+    return 
+
 
