@@ -1,7 +1,7 @@
 from flask import Flask
 import pandas as pd
 import sqlite3
-from database import get_db
+from database import get_db, get_events_results_db 
 from markupsafe import Markup
 from flask import render_template
 app = Flask(__name__)
@@ -33,7 +33,31 @@ def home():
 
 @app.route("/query1") 
 def query1(): 
-    return 
+    (cursor, conn) = get_events_results_db()
+
+    cursor.execute("SELECT * FROM events_results")
+    rows = cursor.fetchall()
+    counter = 0
+    # print(type(rows))
+    for row in rows:
+        print(row)
+        counter = counter + 1
+        if (counter == 10):
+            break
+    # print(rows[1])
+    # for i in range(0, 5):
+    #     print(rows[i])
+
+    data = rows[3]
+    data2 = rows[4]
+    my_list = [['Name', 'Age', 'Country'],
+           ['John', '25', 'USA'],
+           ['Emily', '30', 'Canada'],
+           ['David', '27', 'Australia']]
+
+    html_table = list_to_html_table(my_list)
+    # value = Markup(html_table)
+    return render_template('index.html', dataToRender=html_table, dataToRender2=1) 
 
 def list_to_html_table(data):
     # Generate the table header
