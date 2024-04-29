@@ -60,8 +60,12 @@ body {
     height: 400px; 
     font-size: xx-large;
     /* padding-bottom: 500px; */
+    text-shadow: 5px 5px 3px grey;
 }
 
+.introduction-section h1 { 
+    
+}
 
 .olympics-logo { 
     /* mix-blend-mode: multiply; */
