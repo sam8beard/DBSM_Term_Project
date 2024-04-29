@@ -35,8 +35,20 @@ def home():
 def query1(): 
     (cursor, conn) = get_athlete_information_db()
 
-    cursor.execute("SELECT * FROM athlete_information")
-    rows = cursor.fetchall()
+    # cursor.execute("SELECT ID, GAMES FROM athlete_information LIMIT 100")
+    # rows = [['ID','Games','Name','Sex','Age','Height','Weight','NOC']] + cursor.fetchall()
+    
+    sql_query = """
+    SELECT Games,
+        SUM(CASE WHEN Sex = 'M' THEN 1 ELSE 0 END) AS Male_Athletes,
+        SUM(CASE WHEN Sex = 'F' THEN 1 ELSE 0 END) AS Female_Athletes
+    FROM athlete_information
+    GROUP BY Games;
+    """
+
+    cursor.execute(sql_query)
+    rows = [['Games', 'Num Male Athletes', 'Num Female Athletes']] + cursor.fetchall()
+
     counter = 0
     for row in rows:
         print(row)
