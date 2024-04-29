@@ -71,6 +71,51 @@ def query2():
     # value = Markup(html_table)
     return render_template('query2.html', dataToRender=html_table, dataToRender2=1) 
 
+
+@app.route("/query3") 
+def query3(): 
+    (cursor, conn) = get_athlete_information_db()
+
+    # cursor.execute("SELECT * FROM events_results LIMIT 100")
+
+    # sql_query = """
+    # SELECT 
+    #     ai.NOC AS Country,
+    #     COUNT(er.Medal) AS Total_Medals_Won
+    # FROM 
+    #     athlete_information AS ai
+    # JOIN 
+    #     event_results AS er ON ai.ID = er.ID AND ai.Games = er.Games
+    # WHERE 
+    #     er.Medal IS NOT NULL AND er.Medal != 'NA'
+    #     AND SUBSTRING(er.Games, 1, 4) BETWEEN '1980' AND '2000'
+    # GROUP BY 
+    #     ai.NOC
+    # ORDER BY 
+    #     Total_Medals_Won DESC;
+    # """
+
+    # sql_query = """
+    # SELECT 
+    #     ai.NOC AS Country,
+    # FROM 
+    #     athlete_information AS ai
+    # LIMIT 100
+    # """
+
+    sql_query = 'SELECT ai.NOC FROM athlete_information join  AS ai LIMIT 100'
+    cursor.execute(sql_query)
+
+
+
+
+    rows = cursor.fetchall()
+
+    html_table = list_to_html_table(rows)
+    # value = Markup(html_table)
+    return render_template('query3.html', dataToRender=html_table, dataToRender2=1) 
+
+
 def list_to_html_table(data):
     # Generate the table header
     table_html = '<table>\n<thead>\n<tr>'
