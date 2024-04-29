@@ -1,0 +1,139 @@
+* { 
+    font-family: roboto;
+}
+.head-one { 
+    color: blue; 
+    
+}
+table, th, td { 
+    border: 1px solid white;
+    
+}
+
+.title { 
+    padding-left: 25px; 
+}
+table { 
+    border-collapse: collapse;
+    width: 750px;
+    height: auto;
+}
+body { 
+    background-color: #1F2937;
+}
+
+.my-header { 
+    color: white;
+    display: flex; 
+    /* flex-direction: column; */
+    /* justify-content: space-around; */
+
+}
+
+.my-header div { 
+    display: flex; 
+    align-items: center;
+    
+}
+/* .my-header { 
+    color: white;
+    background-color: #1F2937;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
+} */
+.parent-container { 
+    color: white;
+    background-color: #1F2937;
+    /* border: 5px solid black; */
+    display: flex; 
+    flex-direction: column;
+    height: 100vh; 
+    width: 100vw;
+    justify-content: center;
+    background-image: url(assets/background-2.png);
+    background-position: center;
+    background-size: 100%;
+}
+
+.introduction-section { 
+    height: 400px; 
+    font-size: xx-large;
+    /* padding-bottom: 500px; */
+    text-shadow: 5px 5px 3px grey;
+}
+
+.introduction-section h1 { 
+    
+}
+
+.olympics-logo { 
+    /* mix-blend-mode: multiply; */
+    width: 100px; 
+    padding: 20px; 
+}
+
+.parent-container div { 
+    flex: 1 1 auto;  
+    /* The border color is for testing reasons;
+        REMOVE WHEN DONE  */
+    /* border: 2px solid red;  */
+    height: auto;
+    width: auto;
+
+}
+
+
+.child-one { 
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.child-one div { 
+    /* display: flex;  */
+    align-items: center;
+}
+
+.child-two { 
+    display: flex; 
+    justify-content: center;
+}
+
+.child-two div { 
+    /* display: flex;  */
+    align-items: center;
+}
+
+.buttons-section { 
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+a { 
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    
+}
+.child-two button { 
+    box-sizing: border-box;
+    /* display: block;  */
+    padding: 20px;
+    border-radius: 5%;
+    width: 300px;
+    height: 75px;
+    font-size: x-large;
+    background-color: hsl(215, 28%, 17%);
+    color: white;
+    /* border:#1F2937 solid 1px; */
+
+}
+
+
+
