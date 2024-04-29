@@ -30,8 +30,15 @@ body {
 
 .moving-flags { 
     background-image: url(assets/flags-of-the-world.png);
+    flex-grow: 1;
+    animation: moveIt 10s linear infinite;
 }
-
+@keyframes moveIt { 
+    /* from {background-position: bottom left;}
+    to {background-position: top right;} */
+    from {background-position: center left;}
+    to {background-position: center right;}
+}
 .my-header div { 
     display: flex; 
     align-items: center;
@@ -73,7 +80,7 @@ body {
 
 .olympics-logo { 
     /* mix-blend-mode: multiply; */
-    width: 100px; 
+    width: 200px; 
     padding: 20px; 
 }
 
