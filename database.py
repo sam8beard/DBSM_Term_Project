@@ -3,7 +3,7 @@ import pandas as pd
 
 def get_db():
     # Step 1: Read the CSV file into a DataFrame
-    df = pd.read_csv('athlete_events.csv')
+    df = pd.read_csv('schemas/athlete_events.csv')
 
     # Step 2: Connect to the SQLite database and create it if it doesn't exist
     conn = sqlite3.connect('your_database.db')
