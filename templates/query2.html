@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Roboto+Mono:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- <h1 class="head-one"> Hello {{dataToRender[0]}}, {{dataToRender2}} </h1> -->
+
+    <header class="my-header"> 
+        <div class="title"> 
+            <h2> CSCI 4370 Term Project </h2> 
+        </div>
+        <div> 
+            <img class="olympics-logo" src="../static/assets/olympics_logo.png"> 
+            {{dataToRender}}
+        </div>
+        
+        
+    </header>
+
+    <div class="parent-container">
+
+        <div class="child-one"> 
+            <div> 
+                <div class="introduction-section"> 
+                    
+                    <h1> Hello </h1>
+                    <!-- <p> This is where the introduction to our project will go </p> -->
+
+                </div>
+            </div>
+
+            <!-- <div> 
+                <p> (intro) </p>
+                
+            </div> -->
+
+            
+        </div>
+
+        <div class="child-two"> 
+            
+            <div class="buttons-section"> 
+                <button class="button-1"> Query 1 </button>
+                <button class="button-2"> Query 2 </button>
+            </div>
+
+            <div class="buttons-section"> 
+                <button class="button-3"> Query 3 </button>
+                <button class="button-4"> Query 4 </button>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
