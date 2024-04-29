@@ -28,6 +28,10 @@ body {
 
 }
 
+.moving-flags { 
+    background-image: url(assets/flags-of-the-world.png);
+}
+
 .my-header div { 
     display: flex; 
     align-items: center;

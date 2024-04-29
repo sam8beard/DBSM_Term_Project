@@ -35,6 +35,10 @@ body {
     align-items: center;
     
 }
+
+.moving-flags { 
+    background-image: url(assets/flags-of-the-world.png);
+}
 /* .my-header { 
     color: white;
     background-color: #1F2937;
