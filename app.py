@@ -1,27 +1,37 @@
-from flask import Flask
+from flask import Flask, g
 import pandas as pd
 import sqlite3
-from database import get_db, get_events_results_db, get_athlete_information_db
+from database import setup_db
 from markupsafe import Markup
 from flask import render_template
 app = Flask(__name__)
 
+# def get_db():
+#     if 'db' not in g:
+#         g.db = sqlite3.connect('olympics_database.py.db')
+#     return g.db
+
+# @app.teardown_appcontext
+# def teardown_db(exception):
+#     db = g.pop('db', None)
+#     print("Test Debug")
+#     if db is not None:
+#         db.close()
+
 @app.route("/")
 def home(): 
-    (cursor, conn) = get_db()
-
-    cursor.execute("SELECT * FROM table_name")
+    # (cursor, conn) = get_db()
+    conn = sqlite3.connect('olympics_database.py.db')
+    print("Connection Created")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM athlete_information Limit 100")
     rows = cursor.fetchall()
-    counter = 0
-    # print(type(rows))
-    # # for row in rows:
-    # #     print(row)
-    # print(rows[1])
-    # for i in range(0, 5):
-    #     print(rows[i])
+    conn.close()
+    print("Query Executed \nConnection Closed")
 
-    data = rows[3]
-    data2 = rows[4]
+    # for row in rows:
+    #     print(row)
+
     my_list = [['Name', 'Age', 'Country'],
            ['John', '25', 'USA'],
            ['Emily', '30', 'Canada'],
@@ -33,11 +43,11 @@ def home():
 
 @app.route("/query1") 
 def query1(): 
-    (cursor, conn) = get_athlete_information_db()
-
     # cursor.execute("SELECT ID, GAMES FROM athlete_information LIMIT 100")
     # rows = [['ID','Games','Name','Sex','Age','Height','Weight','NOC']] + cursor.fetchall()
     
+    conn = sqlite3.connect('olympics_database.py.db')
+    print("Connection Created")
     sql_query = """
     SELECT Games,
         SUM(CASE WHEN Sex = 'M' THEN 1 ELSE 0 END) AS Male_Athletes,
@@ -45,16 +55,19 @@ def query1():
     FROM athlete_information
     GROUP BY Games;
     """
-
+    cursor = conn.cursor()
     cursor.execute(sql_query)
     rows = [['Games', 'Num Male Athletes', 'Num Female Athletes']] + cursor.fetchall()
+    conn.close()
+    print("Query Executed \nConnection Closed")
 
-    counter = 0
-    for row in rows:
-        print(row)
-        counter += 1
-        if (counter == 10):
-            break
+
+    # counter = 0
+    # for row in rows:
+    #     print(row)
+    #     counter += 1
+    #     if (counter == 10):
+    #         break
 
     html_table = list_to_html_table(rows)
     # value = Markup(html_table)
@@ -62,10 +75,16 @@ def query1():
 
 @app.route("/query2") 
 def query2(): 
-    (cursor, conn) = get_events_results_db()
+    conn = sqlite3.connect('olympics_database.py.db')
+    print("Connection Created")
+    cursor = conn.cursor()
+
 
     cursor.execute("SELECT * FROM events_results LIMIT 100")
     rows = cursor.fetchall()
+    conn.close()
+    print("Query Executed \nConnection Closed")
+
 
     html_table = list_to_html_table(rows)
     # value = Markup(html_table)
@@ -74,8 +93,9 @@ def query2():
 
 @app.route("/query3") 
 def query3(): 
-    (cursor, conn) = get_athlete_information_db()
-
+    conn = sqlite3.connect('olympics_database.py.db')
+    print("Connection Created")
+    cursor = conn.cursor
     # cursor.execute("SELECT * FROM events_results LIMIT 100")
 
     # sql_query = """
@@ -105,6 +125,8 @@ def query3():
 
     sql_query = 'SELECT ai.NOC FROM athlete_information join  AS ai LIMIT 100'
     cursor.execute(sql_query)
+    conn.close()
+    print("Query Executed \nConnection Closed")
 
 
 
