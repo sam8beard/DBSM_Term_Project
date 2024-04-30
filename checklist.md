@@ -17,3 +17,5 @@ database and load all our tables in, and then in our flask app, we just have cod
 so that we don't have to rewrite our database tables everytime and we can have cursor (what we use to interact
 with the db) just in the flask app. --> We need to have 2 python scripts activate to run our code (make sure to
 document this in the readme)
+
+.
