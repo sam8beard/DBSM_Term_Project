@@ -3,7 +3,7 @@ import pandas as pd
 
 def setup_db():
     # Step 1: Connect to SQL Database and create it if it doesn't exist
-    conn = sqlite3.connect('olympics_database.py.db')
+    conn = sqlite3.connect('olympics_database.db')
 
     # Step 2: Read the CSV files into Dataframes, and write them to database
     df = pd.read_csv('schemas/events_results.csv')
@@ -26,7 +26,7 @@ def setup_db():
 
     # Step 4: Close the connection --> We do this in another route
     conn.close()
-    print("Database and tables created, stored in olympics_database.py.py")
+    print("Database and tables created, stored in olympics_database.py")
 
     return (conn) 
 
