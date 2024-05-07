@@ -82,33 +82,109 @@ def query2():
 
     # cursor.execute("SELECT * FROM events_results LIMIT 100")
 
-    # query to find countries with the most medals won between 1980 and 2000
+    # query to find countries with the most medals won between 1980 and 1990
     query = """
-        SELECT 
-            ai.NOC AS Country,
-            COUNT(er.Medal) AS Total_Medals_Won
-        FROM 
-            athlete_information AS ai
-        JOIN 
-            events_results AS er ON ai.ID = er.ID AND ai.Games = er.Games
-        WHERE 
-            er.Medal IS NOT NULL AND er.Medal != 'NA'
-            AND SUBSTRING(er.Games, 1, 4) BETWEEN '1980' AND '2000'
-        GROUP BY 
-            ai.NOC
-        ORDER BY 
-            Total_Medals_Won DESC;
-        """
-    cursor.execute(query)
+    SELECT 
+        nr.region AS Country,
+        COUNT(er.Medal) AS Total_Medals_Won
+    FROM 
+        athlete_information AS ai
+    JOIN 
+        events_results AS er ON ai.ID = er.ID AND ai.Games = er.Games
+    JOIN 
+        noc_regions AS nr ON ai.NOC = nr.NOC
+    WHERE 
+        er.Medal IS NOT NULL AND er.Medal != 'NA'
+        AND SUBSTRING(er.Games, 1, 4) BETWEEN '1980' AND '1990'
+    GROUP BY 
+        nr.region
+    ORDER BY 
+        Total_Medals_Won DESC;
+    """
 
-    rows = [['Country', 'Medals Won (1980 - 2000)']] + cursor.fetchall()
+    cursor.execute(query)
+    rows = [['Country', 'Medals Won (1980 - 1990)']] + cursor.fetchall()
+
+    # query to find countries with the most medals won between 1990 and 2000
+    query = """
+    SELECT 
+        nr.region AS Country,
+        COUNT(er.Medal) AS Total_Medals_Won
+    FROM 
+        athlete_information AS ai
+    JOIN 
+        events_results AS er ON ai.ID = er.ID AND ai.Games = er.Games
+    JOIN 
+        noc_regions AS nr ON ai.NOC = nr.NOC
+    WHERE 
+        er.Medal IS NOT NULL AND er.Medal != 'NA'
+        AND SUBSTRING(er.Games, 1, 4) BETWEEN '1990' AND '2000'
+    GROUP BY 
+        nr.region
+    ORDER BY 
+        Total_Medals_Won DESC;
+    """
+
+    cursor.execute(query)
+    rows2 = [['Country', 'Medals Won (1990 - 2000)']] + cursor.fetchall()
+
+    # query to find countries with the most medals won between 2000 and 2010
+    query = """
+    SELECT 
+        nr.region AS Country,
+        COUNT(er.Medal) AS Total_Medals_Won
+    FROM 
+        athlete_information AS ai
+    JOIN 
+        events_results AS er ON ai.ID = er.ID AND ai.Games = er.Games
+    JOIN 
+        noc_regions AS nr ON ai.NOC = nr.NOC
+    WHERE 
+        er.Medal IS NOT NULL AND er.Medal != 'NA'
+        AND SUBSTRING(er.Games, 1, 4) BETWEEN '2000' AND '2010'
+    GROUP BY 
+        nr.region
+    ORDER BY 
+        Total_Medals_Won DESC;
+    """
+
+    cursor.execute(query)
+    rows3 = [['Country', 'Medals Won (2000 - 2010)']] + cursor.fetchall()
+
+    # query to find countries with the most medals won between 2000 and 2010
+    query = """
+    SELECT 
+        nr.region AS Country,
+        COUNT(er.Medal) AS Total_Medals_Won
+    FROM 
+        athlete_information AS ai
+    JOIN 
+        events_results AS er ON ai.ID = er.ID AND ai.Games = er.Games
+    JOIN 
+        noc_regions AS nr ON ai.NOC = nr.NOC
+    WHERE 
+        er.Medal IS NOT NULL AND er.Medal != 'NA'
+        AND SUBSTRING(er.Games, 1, 4) BETWEEN '2010' AND '2016'
+    GROUP BY 
+        nr.region
+    ORDER BY 
+        Total_Medals_Won DESC;
+    """
+
+    cursor.execute(query)
+    rows4 = [['Country', 'Medals Won (2010 - 2016)']] + cursor.fetchall()
+
     conn.close()
     print("Query Executed \nConnection Closed")
 
 
     html_table = list_to_html_table(rows)
+    html_table2 = list_to_html_table(rows2)
+    html_table3 = list_to_html_table(rows3)
+    html_table4 = list_to_html_table(rows4)
     # value = Markup(html_table)
-    return render_template('query2.html', dataToRender=html_table, dataToRender2=1) 
+    return render_template('query2.html', dataToRender=html_table, dataToRender2=html_table2, dataToRender3=html_table3,
+                           dataToRender4=html_table4) 
 
 
 @app.route("/query3") 
