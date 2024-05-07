@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # def get_db():
 #     if 'db' not in g:
-#         g.db = sqlite3.connect('olympics_database.py.db')
+#         g.db = sqlite3.connect('olympics_database.db')
 #     return g.db
 
 # @app.teardown_appcontext
@@ -21,7 +21,7 @@ app = Flask(__name__)
 @app.route("/")
 def home(): 
     # (cursor, conn) = get_db()
-    conn = sqlite3.connect('olympics_database.py.db')
+    conn = sqlite3.connect('olympics_database.db')
     print("Connection Created")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM athlete_information Limit 100")
@@ -46,7 +46,7 @@ def query1():
     # cursor.execute("SELECT ID, GAMES FROM athlete_information LIMIT 100")
     # rows = [['ID','Games','Name','Sex','Age','Height','Weight','NOC']] + cursor.fetchall()
     
-    conn = sqlite3.connect('olympics_database.py.db')
+    conn = sqlite3.connect('olympics_database.db')
     print("Connection Created")
     sql_query = """
     SELECT Games,
@@ -75,7 +75,7 @@ def query1():
 
 @app.route("/query2") 
 def query2(): 
-    conn = sqlite3.connect('olympics_database.py.db')
+    conn = sqlite3.connect('olympics_database.db')
     print("Connection Created")
     cursor = conn.cursor()
 
@@ -189,27 +189,26 @@ def query2():
 
 @app.route("/query3") 
 def query3(): 
-    conn = sqlite3.connect('olympics_database.py.db')
+# cursor.execute("SELECT ID, GAMES FROM athlete_information LIMIT 100")
+    # rows = [['ID','Games','Name','Sex','Age','Height','Weight','NOC']] + cursor.fetchall()
+    
+    conn = sqlite3.connect('olympics_database.db')
     print("Connection Created")
-    cursor = conn.cursor
-    # cursor.execute("SELECT * FROM events_results LIMIT 100")
 
-    # sql_query = """
-    # SELECT 
-    #     ai.NOC AS Country,
-    #     COUNT(er.Medal) AS Total_Medals_Won
-    # FROM 
-    #     athlete_information AS ai
-    # JOIN 
-    #     event_results AS er ON ai.ID = er.ID AND ai.Games = er.Games
-    # WHERE 
-    #     er.Medal IS NOT NULL AND er.Medal != 'NA'
-    #     AND SUBSTRING(er.Games, 1, 4) BETWEEN '1980' AND '2000'
-    # GROUP BY 
-    #     ai.NOC
-    # ORDER BY 
-    #     Total_Medals_Won DESC;
-    # """
+    sql_query = """
+    SELECT 
+        ai.NOC AS Country
+    FROM 
+        athlete_information AS ai
+    LIMIT 100
+    """
+
+    cursor = conn.cursor()
+    cursor.execute(sql_query)
+    rows = [['ID', 'Name', 'Olympics', 'Host_City']] + cursor.fetchall()
+    conn.close()
+    print("Query Executed \nConnection Closed")
+
 
     # sql_query = """
     # SELECT 
@@ -219,19 +218,9 @@ def query3():
     # LIMIT 100
     # """
 
-    sql_query = 'SELECT ai.NOC FROM athlete_information join  AS ai LIMIT 100'
-    cursor.execute(sql_query)
-    conn.close()
-    print("Query Executed \nConnection Closed")
-
-
-
-
-    rows = cursor.fetchall()
-
     html_table = list_to_html_table(rows)
     # value = Markup(html_table)
-    return render_template('query3.html', dataToRender=html_table, dataToRender2=1) 
+    return render_template('query1.html', dataToRender=html_table, dataToRender2=1) 
 
 
 def list_to_html_table(data):

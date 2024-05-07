@@ -26,7 +26,7 @@ def setup_db():
 
     # Step 4: Close the connection --> We do this in another route
     conn.close()
-    print("Database and tables created, stored in olympics_database.py")
+    print("Database and tables created, stored in olympics_database.db")
 
     return (conn) 
 
