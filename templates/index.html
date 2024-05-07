@@ -15,7 +15,7 @@
 
     <header class="my-header"> 
         <div class="title"> 
-            <h2> CSCI 4370 Term Project </h2> 
+            <h2> <a href="{{ url_for('home')}}"> CSCI 4370 Term Project </a> </h2> 
         </div>
         <div> 
             <img class="olympics-logo" src="../static/assets/olympics_logo.png"> 
@@ -56,12 +56,12 @@
             
             <div class="buttons-section"> 
                 <button class="button-1"> <a href="{{ url_for('query1')}}"> Query 1 </a> </button>
-                <button class="button-2"> Query 2 </button>
+                <button class="button-2"> <a href="{{ url_for('query2')}}"> Query 2 </a> </button>
             </div>
 
             <div class="buttons-section"> 
-                <button class="button-3"> Query 3 </button>
-                <button class="button-4"> Query 4 </button>
+                <button class="button-3"> <a href="{{ url_for('query3')}}"> Query 3 </a> </button>
+                <button class="button-4"> NOT WORKING YET </button>
             </div>
 
         </div>
