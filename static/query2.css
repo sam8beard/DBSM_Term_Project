@@ -29,7 +29,17 @@ table {
 
 .introduction-section { 
     /* margin-top: -150px; */
-    margin-bottom: -65px;
+    margin-bottom: -10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.description  { 
+    /* font-size: large; */
+    /* margin-top:  */
 }
 /* th { 
     border: 1px solid white;
@@ -149,8 +159,9 @@ body {
 }
 
 .child-two h2 { 
+    text-shadow: 5px 5px 3px grey;
 
-    box-shadow: 0 0 20px rgba(154, 149, 149, 0.15);}
+}
 .buttons-section { 
     display: flex; 
     flex-direction: column;
