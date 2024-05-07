@@ -80,8 +80,28 @@ def query2():
     cursor = conn.cursor()
 
 
-    cursor.execute("SELECT * FROM events_results LIMIT 100")
-    rows = cursor.fetchall()
+    # cursor.execute("SELECT * FROM events_results LIMIT 100")
+
+    # query to find countries with the most medals won between 1980 and 2000
+    query = """
+        SELECT 
+            ai.NOC AS Country,
+            COUNT(er.Medal) AS Total_Medals_Won
+        FROM 
+            athlete_information AS ai
+        JOIN 
+            events_results AS er ON ai.ID = er.ID AND ai.Games = er.Games
+        WHERE 
+            er.Medal IS NOT NULL AND er.Medal != 'NA'
+            AND SUBSTRING(er.Games, 1, 4) BETWEEN '1980' AND '2000'
+        GROUP BY 
+            ai.NOC
+        ORDER BY 
+            Total_Medals_Won DESC;
+        """
+    cursor.execute(query)
+
+    rows = [['Country', 'Medals Won (1980 - 2000)']] + cursor.fetchall()
     conn.close()
     print("Query Executed \nConnection Closed")
 
