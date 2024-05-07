@@ -51,7 +51,7 @@ body {
     color: white;
     display: flex; 
     background-color: #1F2937;
-  
+    flex: 1 1 auto;
 
     /* flex-direction: column; */
     /* justify-content: space-around; */
@@ -90,6 +90,7 @@ body {
     background-size: 100%;
 }
 
+
 .introduction-section { 
     height: 400px; 
     font-size: xx-large;
@@ -108,7 +109,7 @@ body {
 }
 
 .parent-container div { 
-    flex: 1 1 auto;  
+    /* flex: 1 1 auto;   */
     /* The border color is for testing reasons;
         REMOVE WHEN DONE  */
     /* border: 2px solid red;  */
@@ -133,16 +134,23 @@ body {
 
 .child-two { 
     display: flex; 
-    justify-content: center;
-    margin-bottom: -2000px;
+    justify-content: space-around;
+    margin-bottom: -1500px;
 
 }
 
 .child-two div { 
     /* display: flex;  */
+    display: flex;
+    padding: 10px; 
+    flex-direction: column;
     align-items: center;
+    /* justify-content: space-around; */
 }
 
+.child-two h2 { 
+
+    box-shadow: 0 0 20px rgba(154, 149, 149, 0.15);}
 .buttons-section { 
     display: flex; 
     flex-direction: column;
