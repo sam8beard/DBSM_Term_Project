@@ -195,12 +195,47 @@ def query3():
     conn = sqlite3.connect('olympics_database.db')
     print("Connection Created")
 
+    # sql_query = """
+    # SELECT 
+    #     ai.NOC AS Country
+    # FROM 
+    #     athlete_information AS ai
+    # LIMIT 100
+    # """
+
     sql_query = """
     SELECT 
-        ai.NOC AS Country
+        ai.ID,
+        ai.Name,
+        GROUP_CONCAT(DISTINCT ai.Games) AS Olympics,
+        GROUP_CONCAT(DISTINCT hc.City) AS Host_Cities
     FROM 
         athlete_information AS ai
-    LIMIT 100
+    JOIN 
+        events_results AS er ON ai.ID = er.ID
+    JOIN 
+        host_cities AS hc ON ai.Games = hc.Games
+    WHERE 
+        er.Medal IS NOT NULL AND er.Medal != 'NA'
+        AND ai.ID IN (
+            SELECT 
+                ai.ID
+            FROM 
+                athlete_information AS ai
+            JOIN 
+                events_results AS er ON ai.ID = er.ID
+            WHERE 
+                er.Medal IS NOT NULL AND er.Medal != 'NA'
+            GROUP BY 
+                ai.ID
+            HAVING 
+                COUNT(DISTINCT ai.Games) > 1
+        )
+    GROUP BY 
+        ai.ID, ai.Name
+    ORDER BY 
+        ai.ID
+    LIMIT 1000
     """
 
     cursor = conn.cursor()
