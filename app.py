@@ -205,16 +205,13 @@ def query3():
 
     sql_query = """
     SELECT 
-        ai.ID,
         ai.Name,
         GROUP_CONCAT(DISTINCT ai.Games) AS Olympics,
-        GROUP_CONCAT(DISTINCT hc.City) AS Host_Cities
+        COUNT(DISTINCT ai.Games) AS Num_Games
     FROM 
         athlete_information AS ai
     JOIN 
         events_results AS er ON ai.ID = er.ID
-    JOIN 
-        host_cities AS hc ON ai.Games = hc.Games
     WHERE 
         er.Medal IS NOT NULL AND er.Medal != 'NA'
         AND ai.ID IN (
@@ -232,15 +229,15 @@ def query3():
                 COUNT(DISTINCT ai.Games) > 1
         )
     GROUP BY 
-        ai.ID, ai.Name
+        ai.Name
     ORDER BY 
-        ai.ID
-    LIMIT 1000
+        Num_Games DESC
+    LIMIT 100;
     """
 
     cursor = conn.cursor()
     cursor.execute(sql_query)
-    rows = [['ID', 'Name', 'Olympics', 'Host_City']] + cursor.fetchall()
+    rows = [['Athlete', 'Olympics', 'Number of Games Competed In']] + cursor.fetchall()
     conn.close()
     print("Query Executed \nConnection Closed")
 
