@@ -14,8 +14,8 @@ def setup_db():
     df.to_sql('host_cities', conn, if_exists='replace', index=False)
     df = pd.read_csv('schemas/noc_regions.csv')
     df.to_sql('noc_regions', conn, if_exists='replace', index=False)
-    df = pd.read_csv('schemas/athlete_countries.csv')
-    df.to_sql('athlete_countries', conn, if_exists='replace', index=False)
+    df = pd.read_csv('schemas/athlete_attributes.csv')
+    df.to_sql('athlete_attributes', conn, if_exists='replace', index=False)
 
     # Step 3: Create cursor to perform queries
     # cursor = conn.cursor()

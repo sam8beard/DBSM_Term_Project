@@ -252,7 +252,183 @@ def query3():
 
     html_table = list_to_html_table(rows)
     # value = Markup(html_table)
-    return render_template('query1.html', dataToRender=html_table, dataToRender2=1) 
+    return render_template('query3.html', dataToRender=html_table, dataToRender2=1) 
+
+@app.route("/query4") 
+def query4(): 
+# cursor.execute("SELECT ID, GAMES FROM athlete_information LIMIT 100")
+    # rows = [['ID','Games','Name','Sex','Age','Height','Weight','NOC']] + cursor.fetchall()
+    
+    conn = sqlite3.connect('olympics_database.db')
+    print("Connection Created")
+
+    # 1980-1990
+    sql_query = """
+    WITH decade AS (
+        SELECT 
+            Games,
+            CASE 
+                WHEN SUBSTR(Games, 1, 4) BETWEEN '1980' AND '1990' THEN '1980-1990'
+            END AS Decade
+        FROM 
+            athlete_information
+        WHERE 
+            SUBSTR(Games, 1, 4) BETWEEN '1980' AND '1990'
+        GROUP BY 
+            Games
+    )
+
+    SELECT 
+        noc_regions.region AS Country,
+        ROUND(AVG(CAST(athlete_attributes.Height AS FLOAT)), 2) AS Avg_Height,
+        ROUND(AVG(CAST(athlete_attributes.Weight AS FLOAT)), 2) AS Avg_Weight
+    FROM 
+        athlete_information
+    JOIN 
+        athlete_attributes ON athlete_information.ID = athlete_attributes.ID
+    JOIN 
+        noc_regions ON athlete_information.NOC = noc_regions.NOC
+    JOIN 
+        decade ON athlete_information.Games = decade.Games
+    WHERE 
+        athlete_attributes.Height IS NOT NULL 
+        AND athlete_attributes.Weight IS NOT NULL
+    GROUP BY 
+        noc_regions.region
+    ORDER BY 
+        noc_regions.region;
+    """
+
+    cursor = conn.cursor()
+    cursor.execute(sql_query)
+    rows =  [['Country', 'Avg Height (cm)', 'Avg Weight (kg)']] + cursor.fetchall()
+    print("Query Executed \nConnection Closed")
+
+    # 1990-2000
+    sql_query = """
+    WITH decade AS (
+        SELECT 
+            Games,
+            CASE 
+                WHEN SUBSTR(Games, 1, 4) BETWEEN '1990' AND '2000' THEN '1990-2000'
+            END AS Decade
+        FROM 
+            athlete_information
+        WHERE 
+            SUBSTR(Games, 1, 4) BETWEEN '1990' AND '2000'
+        GROUP BY 
+            Games
+    )
+
+    SELECT 
+        noc_regions.region AS Country,
+        ROUND(AVG(CAST(athlete_attributes.Height AS FLOAT)), 2) AS Avg_Height,
+        ROUND(AVG(CAST(athlete_attributes.Weight AS FLOAT)), 2) AS Avg_Weight
+    FROM 
+        athlete_information
+    JOIN 
+        athlete_attributes ON athlete_information.ID = athlete_attributes.ID
+    JOIN 
+        noc_regions ON athlete_information.NOC = noc_regions.NOC
+    JOIN 
+        decade ON athlete_information.Games = decade.Games
+    WHERE 
+        athlete_attributes.Height IS NOT NULL 
+        AND athlete_attributes.Weight IS NOT NULL
+    GROUP BY 
+        noc_regions.region
+    ORDER BY 
+        noc_regions.region;
+    """
+    cursor.execute(sql_query)
+    rows2 =  [['Country', 'Avg Height (cm)', 'Avg Weight (kg)']] + cursor.fetchall()
+
+    # 2000-2010
+    sql_query = """
+    WITH decade AS (
+        SELECT 
+            Games,
+            CASE 
+                WHEN SUBSTR(Games, 1, 4) BETWEEN '2000' AND '2010' THEN '2000-2010'
+            END AS Decade
+        FROM 
+            athlete_information
+        WHERE 
+            SUBSTR(Games, 1, 4) BETWEEN '2000' AND '2010'
+        GROUP BY 
+            Games
+    )
+
+    SELECT 
+        noc_regions.region AS Country,
+        ROUND(AVG(CAST(athlete_attributes.Height AS FLOAT)), 2) AS Avg_Height,
+        ROUND(AVG(CAST(athlete_attributes.Weight AS FLOAT)), 2) AS Avg_Weight
+    FROM 
+        athlete_information
+    JOIN 
+        athlete_attributes ON athlete_information.ID = athlete_attributes.ID
+    JOIN 
+        noc_regions ON athlete_information.NOC = noc_regions.NOC
+    JOIN 
+        decade ON athlete_information.Games = decade.Games
+    WHERE 
+        athlete_attributes.Height IS NOT NULL 
+        AND athlete_attributes.Weight IS NOT NULL
+    GROUP BY 
+        noc_regions.region
+    ORDER BY 
+        noc_regions.region;
+    """
+    cursor.execute(sql_query)
+    rows3 =  [['Country', 'Avg Height (cm)', 'Avg Weight (kg)']] + cursor.fetchall()
+
+    # 2010-2016
+    sql_query = """
+    WITH decade AS (
+        SELECT 
+            Games,
+            CASE 
+                WHEN SUBSTR(Games, 1, 4) BETWEEN '2010' AND '2016' THEN '2010-2016'
+            END AS Decade
+        FROM 
+            athlete_information
+        WHERE 
+            SUBSTR(Games, 1, 4) BETWEEN '2010' AND '2016'
+        GROUP BY 
+            Games
+    )
+
+    SELECT 
+        noc_regions.region AS Country,
+        ROUND(AVG(CAST(athlete_attributes.Height AS FLOAT)), 2) AS Avg_Height,
+        ROUND(AVG(CAST(athlete_attributes.Weight AS FLOAT)), 2) AS Avg_Weight
+    FROM 
+        athlete_information
+    JOIN 
+        athlete_attributes ON athlete_information.ID = athlete_attributes.ID
+    JOIN 
+        noc_regions ON athlete_information.NOC = noc_regions.NOC
+    JOIN 
+        decade ON athlete_information.Games = decade.Games
+    WHERE 
+        athlete_attributes.Height IS NOT NULL 
+        AND athlete_attributes.Weight IS NOT NULL
+    GROUP BY 
+        noc_regions.region
+    ORDER BY 
+        noc_regions.region;
+    """
+    cursor.execute(sql_query)
+    rows4 =  [['Country', 'Avg Height (cm)', 'Avg Weight (kg)']] + cursor.fetchall()
+
+    conn.close()
+    html_table = list_to_html_table(rows)
+    html_table2 = list_to_html_table(rows2)
+    html_table3 = list_to_html_table(rows3)
+    html_table4 = list_to_html_table(rows4)
+    # value = Markup(html_table)
+    return render_template('query4.html', dataToRender=html_table, dataToRender2=html_table2, dataToRender3=html_table3,
+                           dataToRender4=html_table4) 
 
 
 def list_to_html_table(data):
