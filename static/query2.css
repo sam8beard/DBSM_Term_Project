@@ -11,15 +11,21 @@ table, th, td {
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 200px;
+    /* min-width: 200px; */
     /* max-width: 400px; */
     box-shadow: 0 0 20px rgba(154, 149, 149, 0.15);
     /* margin-top: 1px; */
     text-align: center;
 }
 
+.query-title { 
+    padding-top: 60px;
+}
+
 td { 
-    max-height: 20px;
+    /* max-height: 20px; */
+    width: 0.1%; 
+    text-wrap: nowrap;
     /* max-width:  */
 }
 table { 
@@ -100,6 +106,9 @@ body {
     background-size: 100%;
 }
 
+th { 
+    background-color: #1F2937;
+}
 
 .introduction-section { 
     height: 400px; 

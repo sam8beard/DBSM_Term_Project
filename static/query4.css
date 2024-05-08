@@ -5,46 +5,84 @@
     color: blue; 
     
 }
+
+th { 
+    background-color: #1F2937;
+}
+
 table, th, td { 
-    border: 1px solid white;
+    border-collapse: collapse;
+    border: 1px solid white ;
+    margin: 25px 0;
+    font-size: 0.8em;
+    font-family: sans-serif;
+    /* min-width: 200px; */
+    /* max-width: 400px; */
+    box-shadow: 0 0 20px rgba(154, 149, 149, 0.15);
+    /* margin-top: 1px; */
+    text-align: center;
+}
+
+td { 
+    /* max-height: 20px; */
+    width: 0.1%;
+    white-space: nowrap;
+    /* max-width:  */
+}
+table { 
+    /* margin-bottom: -1500px; */
+    /* max-width: 400px; */
+}
+
+.introduction-section { 
+    /* margin-top: -150px; */
+    margin-bottom: -10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     
 }
+
+.description  { 
+    /* font-size: large; */
+    /* margin-top:  */
+}
+/* th { 
+    border: 1px solid white;
+} */
 
 .title { 
     padding-left: 25px; 
 }
 table { 
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
+    /* width: 500px; */
+    /* height: 20%; */
 }
 body { 
-    background-color: black;
+    background-color: #000000;
 }
 
 .my-header { 
     color: white;
     display: flex; 
     background-color: #1F2937;
+    flex: 1 1 auto;
 
     /* flex-direction: column; */
     /* justify-content: space-around; */
 
 }
 
-.moving-flags { 
-    background-image: url(assets/flags-of-the-world.png);
-    flex-grow: 1;
-    animation: moveIt 10s linear infinite;
-}
-@keyframes moveIt { 
-    /* from {background-position: bottom left;}
-    to {background-position: top right;} */
-    from {background-position: center left;}
-    to {background-position: center right;}
-}
 .my-header div { 
     display: flex; 
     align-items: center;
     
+}
+
+.moving-flags { 
+    background-image: url(assets/flags-of-the-world.png);
 }
 /* .my-header { 
     color: white;
@@ -69,15 +107,12 @@ body {
     background-size: 100%;
 }
 
+
 .introduction-section { 
     height: 400px; 
     font-size: xx-large;
     /* padding-bottom: 500px; */
     text-shadow: 5px 5px 3px grey;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
 }
 
 .introduction-section h1 { 
@@ -86,12 +121,12 @@ body {
 
 .olympics-logo { 
     /* mix-blend-mode: multiply; */
-    width: 200px; 
+    width: 100px; 
     padding: 20px; 
 }
 
 .parent-container div { 
-    flex: 1 1 auto;  
+    /* flex: 1 1 auto;   */
     /* The border color is for testing reasons;
         REMOVE WHEN DONE  */
     /* border: 2px solid red;  */
@@ -116,13 +151,24 @@ body {
 
 .child-two { 
     display: flex; 
+    justify-content: space-around;
+    margin-bottom: -1500px;
+
 }
 
 .child-two div { 
     /* display: flex;  */
+    display: flex;
+    padding: 10px; 
+    flex-direction: column;
     align-items: center;
+    /* justify-content: space-around; */
 }
 
+.child-two h2 { 
+    text-shadow: 5px 5px 3px grey;
+
+}
 .buttons-section { 
     display: flex; 
     flex-direction: column;
@@ -143,10 +189,14 @@ a {
     width: 300px;
     height: 75px;
     font-size: x-large;
-    background-color: #1F2937;
+    background-color: hsl(215, 28%, 17%);
     color: white;
     /* border:#1F2937 solid 1px; */
 
+}
+
+.tables { 
+    margin-bottom: -1500px;
 }
 
 

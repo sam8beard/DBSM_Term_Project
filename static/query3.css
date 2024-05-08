@@ -6,45 +6,61 @@
     
 }
 table, th, td { 
-    border: 1px solid white;
-    
+    border-collapse: collapse;
+    border: 1px solid white ;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 200px;
+    box-shadow: 0 0 20px rgba(154, 149, 149, 0.15);
+    /* margin-top: 1px; */
+    margin-bottom: -400px;
+    text-align: center;
 }
+
+th { 
+    background-color: #1F2937;
+}
+
+.introduction-section { 
+    /* margin-top: -150px; */
+    margin-bottom: -65px;
+}
+/* th { 
+    border: 1px solid white;
+} */
 
 .title { 
     padding-left: 25px; 
 }
 table { 
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
+    /* width: 500px; */
+    /* height: 20%; */
 }
 body { 
-    background-color: black;
+    background-color: #000000;
 }
 
 .my-header { 
     color: white;
     display: flex; 
     background-color: #1F2937;
+  
 
     /* flex-direction: column; */
     /* justify-content: space-around; */
 
 }
 
-.moving-flags { 
-    background-image: url(assets/flags-of-the-world.png);
-    flex-grow: 1;
-    animation: moveIt 10s linear infinite;
-}
-@keyframes moveIt { 
-    /* from {background-position: bottom left;}
-    to {background-position: top right;} */
-    from {background-position: center left;}
-    to {background-position: center right;}
-}
 .my-header div { 
     display: flex; 
     align-items: center;
     
+}
+
+.moving-flags { 
+    background-image: url(assets/flags-of-the-world.png);
 }
 /* .my-header { 
     color: white;
@@ -74,10 +90,6 @@ body {
     font-size: xx-large;
     /* padding-bottom: 500px; */
     text-shadow: 5px 5px 3px grey;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
 }
 
 .introduction-section h1 { 
@@ -86,7 +98,7 @@ body {
 
 .olympics-logo { 
     /* mix-blend-mode: multiply; */
-    width: 200px; 
+    width: 100px; 
     padding: 20px; 
 }
 
@@ -108,14 +120,29 @@ body {
     justify-content: center;
     
 }
+th { 
+    background-color: #1F2937;
+}
 
 .child-one div { 
     /* display: flex;  */
     align-items: center;
 }
+.introduction-section { 
+    height: 400px; 
+    font-size: xx-large;
+    /* padding-bottom: 500px; */
+    text-shadow: 5px 5px 3px grey;
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
 
 .child-two { 
     display: flex; 
+    justify-content: center;
+    margin-bottom: -900px;
 }
 
 .child-two div { 
@@ -143,7 +170,7 @@ a {
     width: 300px;
     height: 75px;
     font-size: x-large;
-    background-color: #1F2937;
+    background-color: hsl(215, 28%, 17%);
     color: white;
     /* border:#1F2937 solid 1px; */
 
