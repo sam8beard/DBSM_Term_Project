@@ -1,5 +1,10 @@
 # Hello! 
 
+*Authors*:
+Venn Reddy
+Sammy Beard
+Nishitha Pinninti
+
 This is our term project for our database management class. 
 
 In this project, we will be integrating different kinds of queries 
