@@ -11,7 +11,20 @@ In this project, we will be integrating different kinds of queries
 based upon a data set filled with information from previous Olympic 
 events. 
 
-Commands to run: 
+## Commands to compile and run: 
+
+Constructs database from csv files
+
+``` python database.py ``` 
+
+ 
+Activates virtual environment
+
+``` source ./venv/Scripts/activate  ```
+
+Runs the application 
+
+``` python -m flask run ```
 
 ``` python -m venv venv  ``` 
 
