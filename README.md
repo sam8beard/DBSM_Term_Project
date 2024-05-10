@@ -1,8 +1,8 @@
-# Hello! 
+# Database Management Term Project - 120 Years of Olympic History
 
-*Authors*:
-Venn Reddy
-Sammy Beard
+**Authors**:
+Venn Reddy, 
+Sammy Beard,
 Nishitha Pinninti
 
 This is our term project for our database management class. 
@@ -13,16 +13,15 @@ events.
 
 ## Commands to compile and run: 
 
-Constructs database from csv files
+1: Construct database from csv files:
 
 ``` python database.py ``` 
-
  
-Activates virtual environment
+2: Activate virtual environment
 
 ``` source ./venv/Scripts/activate  ```
 
-Runs the application 
+3: Run the application 
 
 ``` python -m flask run ```
 
