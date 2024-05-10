@@ -6,21 +6,9 @@ from markupsafe import Markup
 from flask import render_template
 app = Flask(__name__)
 
-# def get_db():
-#     if 'db' not in g:
-#         g.db = sqlite3.connect('olympics_database.db')
-#     return g.db
-
-# @app.teardown_appcontext
-# def teardown_db(exception):
-#     db = g.pop('db', None)
-#     print("Test Debug")
-#     if db is not None:
-#         db.close()
-
 @app.route("/")
 def home(): 
-    # (cursor, conn) = get_db()
+    # Create database connection and test if query execution works
     conn = sqlite3.connect('olympics_database.db')
     print("Connection Created")
     cursor = conn.cursor()
@@ -29,9 +17,7 @@ def home():
     conn.close()
     print("Query Executed \nConnection Closed")
 
-    # for row in rows:
-    #     print(row)
-
+    # Testing of list_to_html_table code
     my_list = [['Name', 'Age', 'Country'],
            ['John', '25', 'USA'],
            ['Emily', '30', 'Canada'],
@@ -41,13 +27,13 @@ def home():
     # value = Markup(html_table)
     return render_template('index.html', dataToRender=html_table, dataToRender2=1) 
 
+# Query to see number of male vs female athletes over the years of the games
 @app.route("/query1") 
 def query1(): 
-    # cursor.execute("SELECT ID, GAMES FROM athlete_information LIMIT 100")
-    # rows = [['ID','Games','Name','Sex','Age','Height','Weight','NOC']] + cursor.fetchall()
-    
+    # Create connection for Query 1    
     conn = sqlite3.connect('olympics_database.db')
     print("Connection Created")
+
     sql_query = """
     SELECT Games,
         SUM(CASE WHEN Sex = 'M' THEN 1 ELSE 0 END) AS Male_Athletes,
@@ -61,26 +47,18 @@ def query1():
     conn.close()
     print("Query Executed \nConnection Closed")
 
-
-    # counter = 0
-    # for row in rows:
-    #     print(row)
-    #     counter += 1
-    #     if (counter == 10):
-    #         break
-
+    # Convert Query to html table
     html_table = list_to_html_table(rows)
-    # value = Markup(html_table)
     return render_template('query1.html', dataToRender=html_table, dataToRender2=1) 
 
+# Query to find countries with the most medals won across past four decades. 
+# Demonstrates eras of country dominance and decline, and which countries compete
+# for the most medals. 
 @app.route("/query2") 
 def query2(): 
     conn = sqlite3.connect('olympics_database.db')
     print("Connection Created")
     cursor = conn.cursor()
-
-
-    # cursor.execute("SELECT * FROM events_results LIMIT 100")
 
     # query to find countries with the most medals won between 1980 and 1990
     query = """
@@ -187,21 +165,12 @@ def query2():
                            dataToRender4=html_table4) 
 
 
+# Query to see which athletes were the most dominant at the Olympics and competed for
+# the longest stretches of time/in the most Olympic Games.
 @app.route("/query3") 
-def query3(): 
-# cursor.execute("SELECT ID, GAMES FROM athlete_information LIMIT 100")
-    # rows = [['ID','Games','Name','Sex','Age','Height','Weight','NOC']] + cursor.fetchall()
-    
+def query3():     
     conn = sqlite3.connect('olympics_database.db')
     print("Connection Created")
-
-    # sql_query = """
-    # SELECT 
-    #     ai.NOC AS Country
-    # FROM 
-    #     athlete_information AS ai
-    # LIMIT 100
-    # """
 
     sql_query = """
     SELECT 
@@ -241,24 +210,13 @@ def query3():
     conn.close()
     print("Query Executed \nConnection Closed")
 
-
-    # sql_query = """
-    # SELECT 
-    #     ai.NOC AS Country,
-    # FROM 
-    #     athlete_information AS ai
-    # LIMIT 100
-    # """
-
     html_table = list_to_html_table(rows)
-    # value = Markup(html_table)
     return render_template('query3.html', dataToRender=html_table, dataToRender2=1) 
 
+# Query to see how average physique of an athlete changes over the past four decades
+# of the Olympics, separated by country to see if they have any indication on physiques.
 @app.route("/query4") 
 def query4(): 
-# cursor.execute("SELECT ID, GAMES FROM athlete_information LIMIT 100")
-    # rows = [['ID','Games','Name','Sex','Age','Height','Weight','NOC']] + cursor.fetchall()
-    
     conn = sqlite3.connect('olympics_database.db')
     print("Connection Created")
 
@@ -426,11 +384,11 @@ def query4():
     html_table2 = list_to_html_table(rows2)
     html_table3 = list_to_html_table(rows3)
     html_table4 = list_to_html_table(rows4)
-    # value = Markup(html_table)
     return render_template('query4.html', dataToRender=html_table, dataToRender2=html_table2, dataToRender3=html_table3,
                            dataToRender4=html_table4) 
 
-
+# Method to convert a list in python to a table in html. Takes in a list of lists (think of these
+# as tuples, and then formats proper column header and data).
 def list_to_html_table(data):
     # Generate the table header
     table_html = '<table>\n<thead>\n<tr>'
@@ -451,16 +409,3 @@ def list_to_html_table(data):
     table_html += '</table>'
 
     return Markup(table_html)
-
-
-# # Example usage
-# my_list = [['Name', 'Age', 'Country'],
-#            ['John', '25', 'USA'],
-#            ['Emily', '30', 'Canada'],
-#            ['David', '27', 'Australia']]
-
-# html_table = list_to_html_table(my_list)
-# print(html_table)
-
-
-
